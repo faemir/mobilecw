@@ -20,23 +20,25 @@ header {
   font-family: 'Roboto', sans-serif;
   display: flex;
   width: 100%;
-	max-width:960px;
-	margin: 0 auto;
-	flex-wrap:wrap;
+  max-width:960px;
+  margin: 0 auto;
+  flex-wrap:wrap;
 }
 
 nav {
   background-color: #89bdd3;
   text-align: center;
   z-index: 9999;
+  width:75%;
+  margin: 0 auto;
 }
 
 nav ul {
-  margin: 0;
+
   padding: 0;
   display: flex;
   flex-flow: row wrap;
-
+  flex-wrap:wrap;
 }
 
 nav ul li {
@@ -58,14 +60,14 @@ nav ul li:hover {
 
 #largeimg {
   width: auto;
- height: 300px;
+  height: 300px;
 }
 
 #imgh {
 }
 
 #meobj {
-
+  padding-left: 5%;
 }
 
 #details {
@@ -75,20 +77,25 @@ nav ul li:hover {
   max-width:960px;
   margin: 0 auto;
   flex-wrap:wrap;
+  padding-top: 5%;
+  padding-left: 5%;
 }
 
 #events {
   font-family: 'Roboto', sans-serif;
   width: 100%;
   flex-wrap:wrap;
-  margin: 0 auto;
+  margin: auto;
   max-width:960px;
+  padding-left: 5%;
+
 }
 
 #updates {
   font-family: 'Roboto', sans-serif;
   width: 100%;
   flex-wrap:wrap;
-  margin: 0 auto;
+  margin: auto;
   max-width:960px;
+  padding-left: 5%;
 }
