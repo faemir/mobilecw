@@ -99,3 +99,20 @@ nav ul li:hover {
   max-width:960px;
   padding-left: 5%;
 }
+
+textarea {
+  width: 50%;
+}
+
+#iform {
+  font-family: 'Roboto', sans-serif;
+  width: 100%;
+  flex-wrap:wrap;
+  margin: auto;
+  max-width:960px;
+  padding-left: 5%;
+}
+
+select {
+  font-family: 'Roboto', sans-serif;
+}
