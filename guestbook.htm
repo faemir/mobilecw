@@ -28,21 +28,21 @@
   <div id="iform">
       <form>
         Nickname:<br />
-        <input type="text" name="name"><br />
+        <input type="text" name="name" id="formName"><br />
         Age:<br />
-        <input type="text" name="age"><br />
+        <input type="text" name="age" id="formAge"><br />
         Gender:<br />
-        <select name="cars">
+        <select name="gender" id="formGender">
          <option value="male">Male</option>
          <option value="female">Female</option>
          <option value="other">Other</option>
          <option value="undisclosed">Undisclosed</option>
        </select><br />
         Location:<br />
-        <input type="text" name="location"><br />
+        <input type="text" name="location" id="formLoc"><br />
         Message:<br />
-        <textarea name="comment" rows="5" ... ></textarea><br />
-        <input type="submit" value="Post" onclick="return postM();">
+        <textarea name="comment" rows="5"  id="formMess"></textarea><br />
+        <input type="submit" onClick="return postM();">
       </form>
     </div>
 
