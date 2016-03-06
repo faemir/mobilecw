@@ -125,3 +125,8 @@ select {
   max-width:960px;
   padding-left: 5%;
 }
+
+#gbPoster {
+  font-style: italic;
+  color: #666;
+}

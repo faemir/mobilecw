@@ -7,16 +7,20 @@ function postM() {
   var tempMess = document.getElementById("formMess").value;
   var messagenode = document.createElement("p");
   var personnode = document.createElement("p");
-  var textnodeM = document.createTextNode(tempMess);
-  var fullPerson = document.createTextNode(tempName + ", " + tempAge + ", " + tempGender + ", " + tempLoc);
+  var textnodeM = document.createTextNode("\"" + tempMess + "\"");
+  var fullPerson = document.createTextNode("from " + tempName + " age " + tempAge + " " + tempGender + ", from " + tempLoc + ".");
   var nodebr = document.createElement("br");
+  messagenode.id = "gbMessage";
+  personnode.id = "gbPoster";
   messagenode.appendChild(textnodeM);
-
   personnode.appendChild(fullPerson);
+
+
 
   document.getElementById("guestmessages").appendChild(messagenode);
   document.getElementById("guestmessages").appendChild(personnode);
   storeMessages();
+  document.getElementById("messageForm").reset();
   return false;
 }
 
