@@ -1,4 +1,6 @@
-
+maxX = 0;
+maxY = 0;
+maxZ = 0;
 
 //grab form input and post to guestbook
 function postM() {
@@ -63,7 +65,7 @@ $( document ).ready(function() {
     maxY = 0;
     maxZ = 0;
     loadMessages();
-    window.addEventListener("devicemotion", cancelInput);
+    window.addEventListener("devicemotion", dealWithMotion);
 });
 
 //displays user photo/image in canvas element
@@ -124,18 +126,22 @@ function storeLoc(position){
         $("#geoButton").remove();
 }
 
-function cancelInput(event){
+function getPresent() {
+		//
+}
+
+function dealWithMotion(event){
 	if(Math.abs(event.acceleration.x) > maxX || Math.abs(event.acceleration.y) > maxY || Math.abs(event.acceleration.z) > maxZ){
 					if(Math.abs(event.acceleration.x) > maxX){
-									document.getElementById("motion_text_x").innerHTML = "x=" + event.acceleration.x + "</br>";
+									//document.getElementById("motion_text_x").innerHTML = "x=" + event.acceleration.x + "</br>";
 									maxX = Math.abs(event.acceleration.x);
 									}
 					if(Math.abs(event.acceleration.y) > maxY){
-									document.getElementById("motion_text_y").innerHTML = "y=" + event.acceleration.y + "</br>";
+									//document.getElementById("motion_text_y").innerHTML = "y=" + event.acceleration.y + "</br>";
 									maxY = Math.abs(event.acceleration.y);
 									}
 					if(Math.abs(event.acceleration.z) > maxZ){
-									document.getElementById("motion_text_z").innerHTML = "z=" + event.acceleration.z + "</br>";
+									//document.getElementById("motion_text_z").innerHTML = "z=" + event.acceleration.z + "</br>";
 									maxZ = Math.abs(event.acceleration.z);
 									}
 	}
