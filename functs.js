@@ -1,7 +1,3 @@
-maxX = 0;
-maxY = 0;
-maxZ = 0;
-
 //grab form input and post to guestbook
 function postM() {
   var tempName = document.getElementById("formName").value;
@@ -14,6 +10,7 @@ function postM() {
   var messagenode = document.createElement("p");
   var personnode = document.createElement("p");
   var geonode = document.createElement("p");
+  var signode = document.createElement("div");
 
   var nodebr = document.createElement("br");
   var canv = document.createElement("canvas");
@@ -34,6 +31,9 @@ function postM() {
   document.getElementById("guestmessages").appendChild(personnode);
   document.getElementById("guestmessages").appendChild(geonode);
   document.getElementById("guestmessages").appendChild(canv);
+  document.getElementById("guestmessages").appendChild(signode);
+
+  exportSig(signode);
 
   dispSnapshot(canv);
   storeMessages();
@@ -42,12 +42,18 @@ function postM() {
   return false;
 }
 
+function exportSig(signode) {
+  var $sigdiv = $("#signature")
+  var datapair = $sigdiv.jSignature("getData", "svgbase64");
+    var i = new Image();
+    i.src = "data:" + datapair[0] + "," + datapair[1];
+    $(i).appendTo(signode); // append the image (SVG) to DOM.
+}
+
 //store the guestbook div in local storage
 function storeMessages() {
   var tempData = JSON.stringify($("#guestmessages").html());
-  alert(tempData);
-
-  //localStorage["messages"]
+  //alert(tempData);
 }
 
 //loads the stored guestbook messages back into the div (if they exist)
@@ -126,10 +132,6 @@ function storeLoc(position){
         $("#geoButton").remove();
 }
 
-function getPresent() {
-		//
-}
-
 function dealWithMotion(event){
 	if(Math.abs(event.acceleration.x) > maxX || Math.abs(event.acceleration.y) > maxY || Math.abs(event.acceleration.z) > maxZ){
 					if(Math.abs(event.acceleration.x) > maxX){
@@ -150,5 +152,4 @@ function dealWithMotion(event){
     alert("reset!");
     document.getElementById("messageForm").reset();
 	}
-
 }

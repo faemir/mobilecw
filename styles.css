@@ -127,6 +127,11 @@ select {
   padding-left: 5%;
 }
 
+#signature {
+  width: 30%;
+
+}
+
 #gbPoster {
   font-style: italic;
   color: #666;
