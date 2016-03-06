@@ -1,3 +1,4 @@
+//grab form input and post to guestbook
 function postM() {
   var tempName = document.getElementById("formName").value;
   var tempAge = document.getElementById("formAge").value;
@@ -15,6 +16,24 @@ function postM() {
 
   document.getElementById("guestmessages").appendChild(messagenode);
   document.getElementById("guestmessages").appendChild(personnode);
-
+  storeMessages();
   return false;
 }
+
+//store the guestbook div in local storage
+function storeMessages() {
+  localStorage["messages"] = JSON.stringify($("#guestmessages").html());
+}
+
+//loads the stored guestbook messages back into the div (if they exist)
+function loadMessages() {
+  if (localStorage["messages"] != null) {
+      var contentsOfOldDiv = JSON.parse(localStorage["messages"]);
+      $("#guestmessages").html(contentsOfOldDiv);
+     }
+}
+
+//load the messages on page ready
+$( document ).ready(function() {
+    loadMessages();
+});
