@@ -42,18 +42,20 @@ function postM() {
   return false;
 }
 
+//signature is posted in guestbook as a pure svgbase64
 function exportSig(signode) {
   var $sigdiv = $("#signature")
   var datapair = $sigdiv.jSignature("getData", "svgbase64");
     var i = new Image();
     i.src = "data:" + datapair[0] + "," + datapair[1];
-    $(i).appendTo(signode); // append the image (SVG) to DOM.
+    $(i).appendTo(signode);
 }
 
 //store the guestbook div in local storage
 function storeMessages() {
   var tempData = JSON.stringify($("#guestmessages").html());
   //alert(tempData);
+  localStorage["messages"] = tempData;
 }
 
 //loads the stored guestbook messages back into the div (if they exist)
@@ -72,7 +74,47 @@ $( document ).ready(function() {
     maxZ = 0;
     loadMessages();
     window.addEventListener("devicemotion", dealWithMotion);
+
+    $.simpleWeather({
+      location: 'Loughborough, uk',
+      woeid: '',
+      unit: 'c',
+      success: function(weather) {
+        html = '<p>'+weather.temp+'&deg;'+weather.units.temp+'</p>';
+
+        $("#lboroTemp").html(html);
+      },
+      error: function(error) {
+        $("#lboroTemp").html('<p>'+error+'</p>');
+      }
+    });
+
+    if ("geolocation" in navigator) {
+      $('yourTemp').show();
+    } else {
+      $('yourTemp').hide();
+    }
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+        loadWeather(position.coords.latitude+','+position.coords.longitude); //load weather using your lat/lng coordinates
+      });
+
 });
+
+function loadWeather(location, woeid) {
+  $.simpleWeather({
+    location: location,
+    woeid: woeid,
+    unit: 'c',
+    success: function(weather) {
+      html = '<p>'+weather.temp+'&deg;'+weather.units.temp+'</p>';
+      $("#yourTemp").html(html);
+    },
+    error: function(error) {
+      $("#yourTemp").html('<p>'+error+'</p>');
+    }
+  });
+}
 
 //displays user photo/image in canvas element
 function dispSnapshot(canv){
@@ -88,15 +130,12 @@ function dispSnapshot(canv){
 	    var dataURL = e.target.result,
 	    img = new Image();
 	    img.src = dataURL;
-	    //select the canvas
-	    //c = document.querySelector('canvas'),
-      c = canv;
 	    //create a drawing object
-	    ctx = c.getContext('2d'),
+	    ctx = canv.getContext('2d'),
 	    img.onload = function() {
 	      //set the width and height of canvas
-	      c.width = img.width;
-	      c.height = img.height;
+	      canv.width = img.width;
+	      canv.height = img.height;
 	      //draw the image on canvas
 	      ctx.drawImage(img, 0, 0);
 	    };
