@@ -130,3 +130,7 @@ select {
   font-style: italic;
   color: #666;
 }
+
+.userPhoto {
+  width: 25%;
+}

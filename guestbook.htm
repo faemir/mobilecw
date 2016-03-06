@@ -39,11 +39,16 @@
          <option value="other">Other</option>
          <option value="undisclosed">Undisclosed</option>
        </select><br />
-        Location:<br />
+        From:<br />
         <input type="text" name="location" id="formLoc"><br />
+        <div id="tempGeo">GeoLocation:<br /></div>
+        <input id="geoButton" type="button" onClick="geoLoc();" value="Get GeoLocation"></input>
+        <p id="geoip"></p>
         Message:<br />
         <textarea name="comment" rows="5"  id="formMess"></textarea><br />
-        <input type="submit" onClick="return postM();">
+        Photo:<br />
+        <input type="file" id="cameraphoto" accept="image/*" capture="camera"></input><br /><br />
+        <input type="submit" onClick="return postM();"></input>
       </form>
     </div>
 
