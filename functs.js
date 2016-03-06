@@ -1,3 +1,5 @@
+
+
 //grab form input and post to guestbook
 function postM() {
   var tempName = document.getElementById("formName").value;
@@ -57,6 +59,9 @@ function loadMessages() {
 //load the messages on page ready
 //setup deviceshake cancel form input
 $( document ).ready(function() {
+    maxX = 0;
+    maxY = 0;
+    maxZ = 0;
     loadMessages();
     window.addEventListener("devicemotion", cancelInput);
 });
@@ -121,7 +126,6 @@ function storeLoc(position){
 
 function cancelInput(event){
 	if(Math.abs(event.acceleration.x) > maxX || Math.abs(event.acceleration.y) > maxY || Math.abs(event.acceleration.z) > maxZ){
-					//newHTML = "";
 					if(Math.abs(event.acceleration.x) > maxX){
 									document.getElementById("motion_text_x").innerHTML = "x=" + event.acceleration.x + "</br>";
 									maxX = Math.abs(event.acceleration.x);
@@ -134,13 +138,11 @@ function cancelInput(event){
 									document.getElementById("motion_text_z").innerHTML = "z=" + event.acceleration.z + "</br>";
 									maxZ = Math.abs(event.acceleration.z);
 									}
-					//document.getElementById("geo_text").innerHTML = newHTML;
-
 	}
 	var threshold=20;
 	if (Math.abs(event.acceleration.x)>threshold||Math.abs(event.acceleration.y)>threshold||Math.abs(event.acceleration.z)>threshold){
-		document.getElementById("messageForm").reset();
     alert("reset!");
+    document.getElementById("messageForm").reset();
 	}
 
 }
