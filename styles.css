@@ -50,6 +50,7 @@ nav ul li {
 nav ul li a {
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
+  font-size: x-large;
   color: #000;
   display: block;
 }
