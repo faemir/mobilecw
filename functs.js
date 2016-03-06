@@ -55,10 +55,13 @@ function loadMessages() {
 }
 
 //load the messages on page ready
+//setup deviceshake cancel form input
 $( document ).ready(function() {
     loadMessages();
+    window.addEventListener("devicemotion", cancelInput);
 });
 
+//displays user photo/image in canvas element
 function dispSnapshot(canv){
 		//access the file
 		var input = document.getElementById("cameraphoto");
@@ -87,6 +90,7 @@ function dispSnapshot(canv){
 	  };
 }
 
+//checks for geolocation functionality
 function geoLoc() {
   var options={enableHighAccuracy:true};
   if(navigator.geolocation) {
@@ -98,18 +102,45 @@ function geoLoc() {
 
 }
 
+//error on geolocatio failure
 function error(error) {
   alert("Geolocation Error")
 }
 
+//grabs geolocation lat/long, rounds to 2d.p. and replaces geo label/button
 function storeLoc(position){
 				lat=position.coords.latitude;
         lat = Math.round(lat * 100) / 100;
 				long=position.coords.longitude;
         long = Math.round(long * 100) / 100;
         var geoLine = "GeoLocation: "+ lat + ", ° " + long + "°.";
-
         document.getElementById("geoip").innerHTML = geoLine;
         $("#tempGeo").remove();
         $("#geoButton").remove();
+}
+
+function cancelInput(event){
+	if(Math.abs(event.acceleration.x) > maxX || Math.abs(event.acceleration.y) > maxY || Math.abs(event.acceleration.z) > maxZ){
+					//newHTML = "";
+					if(Math.abs(event.acceleration.x) > maxX){
+									document.getElementById("motion_text_x").innerHTML = "x=" + event.acceleration.x + "</br>";
+									maxX = Math.abs(event.acceleration.x);
+									}
+					if(Math.abs(event.acceleration.y) > maxY){
+									document.getElementById("motion_text_y").innerHTML = "y=" + event.acceleration.y + "</br>";
+									maxY = Math.abs(event.acceleration.y);
+									}
+					if(Math.abs(event.acceleration.z) > maxZ){
+									document.getElementById("motion_text_z").innerHTML = "z=" + event.acceleration.z + "</br>";
+									maxZ = Math.abs(event.acceleration.z);
+									}
+					//document.getElementById("geo_text").innerHTML = newHTML;
+
+	}
+	var threshold=20;
+	if (Math.abs(event.acceleration.x)>threshold||Math.abs(event.acceleration.y)>threshold||Math.abs(event.acceleration.z)>threshold){
+		document.getElementById("messageForm").reset();
+    alert("reset!");
+	}
+
 }
