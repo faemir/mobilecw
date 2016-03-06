@@ -71,6 +71,16 @@ nav ul li:hover {
   padding-left: 5%;
 }
 
+#bigImg {
+  max-width: 100%;
+  display:block;
+  height: auto;
+}
+
+#meAbout {
+  padding-left: 5%;
+}
+
 #details {
   font-family: 'Roboto', sans-serif;
   display: flex;
