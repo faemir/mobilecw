@@ -99,6 +99,8 @@ $( document ).ready(function() {
         loadWeather(position.coords.latitude+','+position.coords.longitude); //load weather using your lat/lng coordinates
       });
 
+    $("#signature").jSignature();
+
 });
 
 function loadWeather(location, woeid) {
