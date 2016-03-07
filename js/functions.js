@@ -16,22 +16,22 @@ function postM() {
   var canv = document.createElement("canvas");
 
   var textnodeM = document.createTextNode("\"" + tempMess + "\"");
-  var fullPerson = document.createTextNode("from " + tempName + " age " + tempAge + " - " + tempGender + ", from " + tempLoc + ".");
+  var fullPerson = document.createTextNode("from " + tempName + " age " + tempAge + " " + tempGender + ", from " + tempLoc + ".");
   var geoStr = document.createTextNode(tempGeo);
 
-  geonode.appendChild(geoStr);
   messagenode.id = "gbMessage";
   personnode.id = "gbPoster";
-  canv.className = "userPhoto";
+  canv.id = "userPhoto";
 
   messagenode.appendChild(textnodeM);
   personnode.appendChild(fullPerson);
 
-  document.getElementById("guestmessages").appendChild(messagenode);
-  document.getElementById("guestmessages").appendChild(personnode);
-  document.getElementById("guestmessages").appendChild(geonode);
-  document.getElementById("guestmessages").appendChild(canv);
-  document.getElementById("guestmessages").appendChild(signode);
+  document.getElementById("messagesdiv").appendChild(messagenode);
+  document.getElementById("messagesdiv").appendChild(personnode);
+  document.getElementById("messagesdiv").appendChild(geonode);
+  document.getElementById("messagesdiv").appendChild(signode);
+  document.getElementById("messagesdiv").appendChild(canv);
+
 
   exportSig(signode);
 
@@ -53,8 +53,7 @@ function exportSig(signode) {
 
 //store the guestbook div in local storage
 function storeMessages() {
-  var tempData = JSON.stringify($("#guestmessages").html());
-  //alert(tempData);
+  var tempData = JSON.stringify($("#messagesdiv").html());
   localStorage["messages"] = tempData;
 }
 
@@ -62,7 +61,7 @@ function storeMessages() {
 function loadMessages() {
   if (localStorage["messages"] != null) {
       var contentsOfOldDiv = JSON.parse(localStorage["messages"]);
-      $("#guestmessages").html(contentsOfOldDiv);
+      $("#messagesdiv").html(contentsOfOldDiv);
      }
 }
 
@@ -88,18 +87,19 @@ $( document ).ready(function() {
         $("#lboroTemp").html('<p>'+error+'</p>');
       }
     });
-
-    if ("geolocation" in navigator) {
-      $('yourTemp').show();
-    } else {
-      $('yourTemp').hide();
+    if ($('#yourTemp').length) {
+      if ("geolocation" in navigator) {
+        $('yourTemp').show();
+        navigator.geolocation.getCurrentPosition(function(position) {
+          loadWeather(position.coords.latitude+','+position.coords.longitude); //load weather using your lat/lng coordinates
+        });
+      } else {
+        $('yourTemp').hide();
+      }
     }
-
-      navigator.geolocation.getCurrentPosition(function(position) {
-        loadWeather(position.coords.latitude+','+position.coords.longitude); //load weather using your lat/lng coordinates
-      });
-
-    $("#signature").jSignature();
+    if ($('#signature').length) {
+      $("#signature").jSignature();
+    }
 
 });
 

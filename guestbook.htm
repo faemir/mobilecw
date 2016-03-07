@@ -6,60 +6,64 @@
   <script src="js/jquery.simpleWeather.min.js"></script>
   <script src="js/jSignature.min.js"></script>
   <script language="javascript" src="js/functions.js" type="text/javascript"></script>
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href="css/styles.css" rel="stylesheet" type="text/css">
+  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
-  <div class="flex-container" id="heading">
-  <div>
-    <a href="index.htm"><img id="logo" src="images/logo.png" alt="main logo" width="80" height="100" /></a>
-  </div>
-  <div>
-    <h1>My E-learning Journey of Mobile Application Development</h1>
-  </div>
-  </div>
-  <div class="flex-container" id="menu">
-    <nav>
-      <ul id="menulist">
-        <li><a href= "index.htm">Home</a></li>
-        <li><a href= "">Events</a></li>
-        <li><a href= "">Updates</a></li>
-        <li><a href= "">Weather</a></li>
-        <li><a href= "guestbook.htm">Guestbook</a></li>
-      </ul>
-    </nav>
-  </div>
-  <div class="flex-container" id="guestbook">
-    <div class="flex-item" id="guestmessages">
-
+  <div id="bodydiv">
+    <div id="navdiv">
+      <div id="logotitlediv">
+        <a href="index.htm" id="logolink"><img id="logo" src="images/logo.png" alt="main logo" width="80" height="100" /></a>
+        <p id="title">My E-learning Journey of Mobile Application Development</p>
+      </div>
+      <div id="menudiv">
+        <nav>
+        <ul id="menulist">
+          <li><a href= "index.htm">Home</a></li>
+          <li><a href= "">Events</a></li>
+          <li><a href= "">Updates</a></li>
+          <li><a href= "">Weather</a></li>
+          <li><a href= "guestbook.htm">Guestbook</a></li>
+        </ul>
+      </nav>
+      </div>
     </div>
-    <div class="flex-item" id="divPost">
-      <form id="messageForm">
-        Nickname:<br />
-        <input type="text" name="name" id="formName"><br />
-        Age:<br />
-        <input type="text" name="age" id="formAge"><br />
-        Gender:<br />
-        <select name="gender" id="formGender">
-         <option value="male">Male</option>
-         <option value="female">Female</option>
-         <option value="other">Other</option>
-         <option value="undisclosed">Undisclosed</option>
-       </select><br />
-        From:<br />
-        <input type="text" name="location" id="formLoc"><br />
-        <div id="tempGeo">GeoLocation:<br /></div>
-        <input id="geoButton" type="button" onClick="geoLoc();" value="Get GeoLocation"></input>
-        <p id="geoip"></p>
-        Message:<br />
-        <textarea name="comment" rows="5"  id="formMess"></textarea><br />
-        Photo:<br />
-        <input type="file" id="cameraphoto" accept="image/*" capture="camera"></input><br /><br />
-        Signature:<br />
-        <div id="signature"></div>
-        <input type="submit" value="Post" onClick="return postM();"></input>
-      </form>
+    <div id="contentdiv">
+      <div id="messagebookdiv">
+        <div id="inputFormdiv">
+          <form id="messageForm">
+            Nickname:<br />
+            <input type="text" name="name" id="formName"><br />
+            Age:<br />
+            <input type="text" name="age" id="formAge"><br />
+            Gender:<br />
+            <select name="gender" id="formGender">
+               <option value="male">Male</option>
+               <option value="female">Female</option>
+               <option value="other">Other</option>
+               <option value="undisclosed">Undisclosed</option>
+            </select><br />
+            From:<br />
+            <input type="text" name="location" id="formLoc"><br />
+            <div id="tempGeo">GeoLocation:<br /></div>
+            <input id="geoButton" type="button" onClick="geoLoc();" value="Get GeoLocation"></input>
+            <p id="geoip"></p>
+            Message:<br />
+            <textarea name="comment" rows="5"  id="formMess"></textarea><br />
+            Photo:<br />
+            <input type="file" id="cameraphoto" accept="image/*" capture="camera"></input><br /><br />
+            Signature:<br />
+            <div id="signature"></div>
+            <input type="submit" value="Post" onClick="return postM();"></input>
+          </form>
+        </div>
+        <div id="messagesdiv">
+          message
+        </div>
+      </div>
     </div>
   </div>
-
 </body>
 </html>

@@ -1,40 +1,172 @@
-.flex-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
-  align-content: flex-start;
-}
-
-#AboutMe {
-  flex-grow 2;
-}
-
-#largeimg {
-  width: 70%;
-  flex-grow 1;
-}
-
-body {
-  background-color: #C9C9C9;
+*{
   font-family: 'Roboto', sans-serif;
 }
 
-nav {
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #E9E9E9;
+}
 
+h2 {
+  color: #3299BB;
+}
+
+td {
+  color: #424242;
+}
+
+th {
+  color: #FF9900;
+}
+
+h3 {
+  color: #424242;
+}
+
+.nonMenuList {
+  color: #424242;
+}
+
+.testul li{
+  font-style: italic;
+}
+
+p {
+  color: #424242;
+}
+
+#inputFormdiv {
+  color: #424242;
+}
+
+#gbPoster {
+  color: #FF9900;
+}
+
+#yourTemp p {
+  color: #FF9900;
+}
+
+#lboroTemp p {
+  color: #FF9900;
+}
+
+#bodydiv {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+#navdiv {
+ padding: 0;
+ margin-bottom: 1%;
+}
+
+#contentdiv {
+  flex: 1;
+  overflow: auto;
+  padding-top: 1em;
+}
+
+#contentsubdiv {
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#logotitlediv {
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#menudiv {
+  display:flex;
+}
+
+#title {
+  font-size: 1.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#menulist {
   text-align: center;
-  z-index: 9999;
-  width:75%;
+  margin: 0 auto;
+}
+
+#imginfodiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#imgdiv {
+  max-width: 50%;
+}
+
+#largeimg {
+  width: 100%;
+  height: auto;
+}
+
+#infodiv {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+}
+
+#aboutdiv {
+  flex: 1;
+}
+
+#objectivediv {
+  flex: 1;
+}
+
+#eventsweatherdiv {
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;;
+}
+
+#eventsdiv {
+
+}
+
+#updatesdiv {
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#innerupdatediv {
+ margin-left: 1%;
+}
+
+#updatespacerdiv {
+
+}
+
+#weatherdiv {
+}
+
+nav {
   margin: 0 auto;
 }
 
 nav ul {
-background-color: #89bdd3;
+  background-color: #89bdd3;
   padding: 0;
   display: flex;
-  flex-flow: row wrap;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
 }
 
 nav ul li {
@@ -45,17 +177,43 @@ nav ul li {
 
 nav ul li a {
   text-decoration: none;
-  font-family: 'Roboto', sans-serif;
   font-size: x-large;
   color: #000;
   display: block;
+  position: relative;
+  flex: 1 0 auto;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  color: #E9E9E9;
 }
 
 nav ul li:hover {
-  background-color: #9ad3de;
+  background-color: #FF9900;
 }
 
-.userPhoto {
-  width: 300px;
-  height:auto;
+
+#messagebookdiv {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+
+}
+
+#messagesdiv {
+}
+
+#messageForm {
+  padding: 5%;
+}
+
+input[type=file] {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    width: 200px;
+}
+
+#userPhoto {
+  max-width: 150px;
+  height auto;
 }
