@@ -2,7 +2,6 @@
 function postM() {
   var tempName = document.getElementById("formName").value;
   var tempAge = document.getElementById("formAge").value;
-  var tempGender = document.getElementById("formGender").value;
   var tempLoc = document.getElementById("formLoc").value;
   var tempMess = document.getElementById("formMess").value;
   var tempGeo = document.getElementById("geoip").innerHTML;
@@ -16,13 +15,14 @@ function postM() {
   var canv = document.createElement("canvas");
 
   var textnodeM = document.createTextNode("\"" + tempMess + "\"");
-  var fullPerson = document.createTextNode("from " + tempName + " age " + tempAge + " " + tempGender + ", from " + tempLoc + ".");
+  var fullPerson = document.createTextNode("from " + tempName + " age " + tempAge + ", from " + tempLoc + ".");
   var geoStr = document.createTextNode(tempGeo);
 
   messagenode.id = "gbMessage";
   personnode.id = "gbPoster";
   canv.id = "userPhoto";
 
+  geonode.appendChild(geoStr);
   messagenode.appendChild(textnodeM);
   personnode.appendChild(fullPerson);
 
@@ -38,6 +38,7 @@ function postM() {
   dispSnapshot(canv);
   storeMessages();
   document.getElementById("messageForm").reset();
+  $("#signature").jSignature("reset")
 
   return false;
 }
@@ -68,6 +69,7 @@ function loadMessages() {
 //load the messages on page ready
 //setup deviceshake cancel form input
 $( document ).ready(function() {
+  localStorage["messages"] = null;
     maxX = 0;
     maxY = 0;
     maxZ = 0;
@@ -167,7 +169,7 @@ function storeLoc(position){
         lat = Math.round(lat * 100) / 100;
 				long=position.coords.longitude;
         long = Math.round(long * 100) / 100;
-        var geoLine = "GeoLocation: "+ lat + ", ° " + long + "°.";
+        var geoLine = lat + ", ° " + long + "°.";
         document.getElementById("geoip").innerHTML = geoLine;
         $("#tempGeo").remove();
         $("#geoButton").remove();
@@ -190,7 +192,6 @@ function dealWithMotion(event){
 	}
 	var threshold=20;
 	if (Math.abs(event.acceleration.x)>threshold||Math.abs(event.acceleration.y)>threshold||Math.abs(event.acceleration.z)>threshold){
-    alert("reset!");
     document.getElementById("messageForm").reset();
 	}
 }

@@ -200,6 +200,7 @@ nav ul li:hover {
 }
 
 #messagesdiv {
+  width: 50%;
 }
 
 #messageForm {
@@ -216,4 +217,7 @@ input[type=file] {
 #userPhoto {
   max-width: 150px;
   height auto;
+}
+
+#signature {
 }
