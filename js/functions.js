@@ -81,7 +81,6 @@ function loadMessages() {
 //load the messages on page ready
 //setup deviceshake cancel form input
 $( document ).ready(function() {
-  localStorage["messages"] = null;
     maxX = 0;
     maxY = 0;
     maxZ = 0;
