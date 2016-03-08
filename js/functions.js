@@ -1,46 +1,58 @@
 //grab form input and post to guestbook
 function postM() {
-  var tempName = document.getElementById("formName").value;
-  var tempAge = document.getElementById("formAge").value;
-  var tempLoc = document.getElementById("formLoc").value;
-  var tempMess = document.getElementById("formMess").value;
-  var tempGeo = document.getElementById("geoip").innerHTML;
+  if (!($("#formName").val() == '')) {
+    if (!($("#formMess").val() == '')) {
+      //grabbing form input, creating DOM elements and adding to message section
+      var tempName = document.getElementById("formName").value;
+      var tempAge = document.getElementById("formAge").value;
+      var tempLoc = document.getElementById("formLoc").value;
+      var tempMess = document.getElementById("formMess").value;
+      var tempGeo = document.getElementById("geoip").innerHTML;
 
-  var messagenode = document.createElement("p");
-  var personnode = document.createElement("p");
-  var geonode = document.createElement("p");
-  var signode = document.createElement("div");
+      var messagenode = document.createElement("p");
+      var personnode = document.createElement("p");
+      var geonode = document.createElement("p");
+      var signode = document.createElement("div");
 
-  var nodebr = document.createElement("br");
-  var canv = document.createElement("canvas");
+      var nodebr = document.createElement("br");
+      var canv = document.createElement("canvas");
 
-  var textnodeM = document.createTextNode("\"" + tempMess + "\"");
-  var fullPerson = document.createTextNode("from " + tempName + " age " + tempAge + ", from " + tempLoc + ".");
-  var geoStr = document.createTextNode(tempGeo);
+      var textnodeM = document.createTextNode("\"" + tempMess + "\"");
+      var fullPerson = document.createTextNode("from " + tempName + " age " + tempAge + ", from " + tempLoc + ".");
+      var geoStr = document.createTextNode(tempGeo);
 
-  messagenode.id = "gbMessage";
-  personnode.id = "gbPoster";
-  canv.id = "userPhoto";
+      messagenode.id = "gbMessage";
+      personnode.id = "gbPoster";
+      canv.id = "userPhoto";
 
-  geonode.appendChild(geoStr);
-  messagenode.appendChild(textnodeM);
-  personnode.appendChild(fullPerson);
+      geonode.appendChild(geoStr);
+      messagenode.appendChild(textnodeM);
+      personnode.appendChild(fullPerson);
 
-  document.getElementById("messagesdiv").appendChild(messagenode);
-  document.getElementById("messagesdiv").appendChild(personnode);
-  document.getElementById("messagesdiv").appendChild(geonode);
-  document.getElementById("messagesdiv").appendChild(signode);
-  document.getElementById("messagesdiv").appendChild(canv);
+      document.getElementById("messagesdiv").appendChild(messagenode);
+      document.getElementById("messagesdiv").appendChild(personnode);
+      document.getElementById("messagesdiv").appendChild(geonode);
+      document.getElementById("messagesdiv").appendChild(signode);
+      document.getElementById("messagesdiv").appendChild(canv);
+
+      //handling graffiti
+      exportSig(signode);
+
+      if (!($("#cameraphoto").val() == '')) {
+        dispSnapshot(canv);
+      }
+
+      //store messages with new post
+      storeMessages();
+
+      //reset form for new input
+      document.getElementById("messageForm").reset();
+      $("#signature").jSignature("reset")
+    }
+  }
 
 
-  exportSig(signode);
-
-  dispSnapshot(canv);
-  storeMessages();
-  document.getElementById("messageForm").reset();
-  $("#signature").jSignature("reset")
-
-  return false;
+  return false; //don't reload the page
 }
 
 //signature is posted in guestbook as a pure svgbase64
@@ -105,6 +117,7 @@ $( document ).ready(function() {
 
 });
 
+//pulls in weather data using simpleweather
 function loadWeather(location, woeid) {
   $.simpleWeather({
     location: location,
@@ -175,6 +188,7 @@ function storeLoc(position){
         $("#geoButton").remove();
 }
 
+//handle device motion to cancel form input
 function dealWithMotion(event){
 	if(Math.abs(event.acceleration.x) > maxX || Math.abs(event.acceleration.y) > maxY || Math.abs(event.acceleration.z) > maxZ){
 					if(Math.abs(event.acceleration.x) > maxX){
